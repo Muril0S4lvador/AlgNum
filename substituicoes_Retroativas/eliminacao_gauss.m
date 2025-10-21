@@ -4,7 +4,7 @@ function [A, b, Info] = eliminacao_gauss(n, A, b)
     for j=1:n-1
         p=j;
         Amax = abs(A(j, j));
-        for k=j+1:n-1
+        for k=j+1:n
             if abs(A(k, j)) > Amax
                 Amax = abs(A(k, j));
                 p = k;
