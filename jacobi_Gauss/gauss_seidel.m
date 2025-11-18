@@ -4,6 +4,9 @@ function[x, Iter, Info] = gauss_seidel(n, A, b, Toler, IterMax)
     endfor
     Iter = 0;
     do
+        Iter = Iter + 1;
+        NormaNum = 0;
+        NormaDen = 0;
         for i = 1: n
             Soma = 0;
             for j = 1 : n
@@ -13,7 +16,7 @@ function[x, Iter, Info] = gauss_seidel(n, A, b, Toler, IterMax)
             endfor
             v(i, 1) = x(i, 1);
             x(i, 1) = (b(i, 1) - Soma) / A(i, i);
-            t = abd(v(i, 1) - x(i, 1));
+            t = abs(v(i, 1) - x(i, 1));
             if t > NormaNum
                 NormaNum = t;
             endif
