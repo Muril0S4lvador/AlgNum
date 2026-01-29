@@ -1,6 +1,6 @@
 function[x, Iter, Info] = gauss_seidel(n, A, b, Toler, IterMax)
     for i = 1 : n
-        x(i, 1) = b(i, 1) / A(i, i);
+        x(i, 1) = b(i) / A(i, i);
     endfor
     Iter = 0;
     do
@@ -10,18 +10,18 @@ function[x, Iter, Info] = gauss_seidel(n, A, b, Toler, IterMax)
         for i = 1: n
             Soma = 0;
             for j = 1 : n
-                if i != j
-                    Soma = Soma + A(i, j) + x(j, 1);
+                if i ~= j
+                    Soma = Soma + A(i, j) * x(j);
                 endif
             endfor
-            v(i, 1) = x(i, 1);
-            x(i, 1) = (b(i, 1) - Soma) / A(i, i);
-            t = abs(v(i, 1) - x(i, 1));
+            v(i) = x(i);
+            x(i) = (b(i) - Soma) / A(i, i);
+            t = abs(v(i) - x(i));
             if t > NormaNum
                 NormaNum = t;
             endif
-            if abs(x(i, 1)) > NormaDen
-                NormaDen = abs(x(i, 1));
+            if abs(x(i)) > NormaDen
+                NormaDen = abs(x(i));
             endif
         endfor
         NormaRel = NormaNum / NormaDen;
